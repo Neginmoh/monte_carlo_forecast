@@ -1,7 +1,7 @@
 # Monte Carlo Simulation on Financial Data Forecasting Future Prices
 ## Project Description
 
-This project involves implementing Monte Carlo simulation on financial data fetched from Yahoo Finance. The aim is to apply Monte Carlo method by introducing random variables to predict future adjusted closing prices for the provided company. For this purpose, the company's historical data for the specified period will be used to illustrate the possible trajectories of future prices. This enables investors and analysts to gain essential insights into potential scenarios and make informed decisions.
+This project involves implementing Monte Carlo simulation on financial data fetched from Yahoo Finance. The aim is to apply Monte Carlo method by introducing random variables, assuming a normal distrubution for returns, to predict future adjusted closing prices for the provided company. For this purpose, the company's historical data for the specified period will be used to illustrate the possible trajectories of future prices. This enables investors and analysts to gain essential insights into potential scenarios and make informed decisions.
 
 ## Download Input Data
 
@@ -9,7 +9,8 @@ This project utilizes yfinance package to fetch financial data for the selected 
 There are two options to acquire data from yfinance:
 1. using ```yfinance.download(symbol, ...)``` by using ```data_download()``` method of ```class DataLoader``` in data_loader.py file.
 2. using ```yfinance.Ticker(symbol).history(...)``` by using ```data_history()``` method of ```class DataLoader``` in data_loader.py file
-The default code uses first option, but you can tweak the initialization of the ```class Statistic``` in statistic.py file to use the second option.
+The default code uses the first option, but you can tweak the initialization of the ```class Statistic``` in statistic.py file to use the second option.
+If you choose the second option make sure to set ```auto_adjust=False``` to easily distinguish between 'Close' and 'Adj Close' columns. If using the default setting or ```auto_adjust=True```, then the 'Close' column in this case corrosponds to adjusted close prices.
 
 ## Setup
 
