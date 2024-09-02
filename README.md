@@ -83,6 +83,9 @@ A graph is generated using Matplotlib which includes two plots:
 - A time-series plot illustrating the trajectories of possible outcomes simulated by Monte Carlo method
 - A histogram of the potential prices on the final forecast day, with VaR, CVaR, mean losses and prices annotated.
 
+Below is the sample output graph:
+![Sample output graph](output/output_sample.png)
+
 If you only need one of these plots as output, change ```plotter.plot_both()``` at main.py to:
 - ```plotter.plot_trajectories()``` for the time-series plot
 - ```plotter.plot_histogram()``` for the histogram plot
