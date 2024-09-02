@@ -15,11 +15,13 @@ class Plotter:
         mc (MonteCarlo) : An instance of MonteCarlo class
         asset (str) : The symbol for the company under study    
     '''
-    def __init__(self, mc, asset):
+    def __init__(self, mc, asset, initial_date, delta_days):
         '''
         It initializes the necessary attributes
         '''
         self.asset = asset
+        self.initial_date = initial_date
+        self.delta_days = delta_days
         self.price_trajectories = mc.price_trajectories
         self.final_prices = mc.final_prices
         self.VaR = mc.VaR
@@ -31,13 +33,23 @@ class Plotter:
         
     def plot_trajectories(self):
         '''
-        this function plots all the possible trajectories predicted by Monte Carlo for the specified asset
+        this function plots all the possible trajectories predicted by Monte Carlo, starting from initial date, for the specified asset
         '''
         
         ticker = yf.Ticker(self.asset)
         info = ticker.info
         company_name = info['longName']
         plt.plot(self.price_trajectories.T, linewidth=0.5)
+
+        min_y, max_y = plt.ylim()
+        min_x, max_x = plt.xlim()
+
+        date_y = max_y - 0.15 * (max_y - min_y)
+        date_x = min_x + 0.05 * (max_x - min_x)
+
+        plt.text(date_x, date_y, f'Initial Date = {self.initial_date.date()}\n{self.delta_days} days of historical data', fontsize = 6, 
+                bbox = dict(facecolor = 'red', alpha = 0.2))
+
         plt.xlabel("Forecast Horizon (Days)",fontsize=8)
         plt.ylabel("Predicted Prices",fontsize=8)
         plt.title(f'Monte Carlo Simulation for Predicting Future Prices of {company_name}', fontsize=10)

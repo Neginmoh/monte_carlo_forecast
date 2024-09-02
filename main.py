@@ -42,8 +42,8 @@ def main():
     mc = MonteCarlo(asset, forecast_horizon ,hist_start_date, hist_end_date)
     mc.run_inference()
 
-    plotter = Plotter(mc, asset)
-    plotter.plot_both() # if both plots are needed, if not run plotter.plot_trajectories() or plotter.plot_histogram()
+    plotter = Plotter(mc, asset, initial_date, Config.DELTA_DAYS)
+    plotter.plot_both() # Use this if both plots are needed. If not, run plotter.plot_trajectories() or plotter.plot_histogram().
     plt.show()
 
 if __name__ == "__main__":
