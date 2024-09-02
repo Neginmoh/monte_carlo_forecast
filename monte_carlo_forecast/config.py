@@ -6,10 +6,11 @@ import argparse
 class Config:
     
     METRIC = 'Adj Close'
-    NUM_SIMULATIONS = 1000
+    NUM_SIMULATIONS = 10000
     DELTA_DAYS = 500
     DEFAULT_SYMBOL = 'AAPL'
     DEFAULT_FORECAST_HORIZON = 90
+    CONFIDENCE_LEVEL = 95 # 95% confidence level
 
     def arg_parser(self):
         '''
@@ -33,6 +34,5 @@ class Config:
                             help="Enter the number of days into the future the predictions will extend (default: 90 days)")
         parser.add_argument("--initial_date", 
                             type=str, 
-                            # default=datetime.now(), 
                             help="Enter the initial date for the prediction, i.e, end date for historica date (default: today's date)")
         return parser.parse_args()

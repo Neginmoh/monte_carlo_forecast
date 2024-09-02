@@ -20,7 +20,7 @@ class Statistic:
         self.hist_end_date = hist_end_date        
         self.metric = Config.METRIC
         self.data_loader_instance = DataLoader(self.asset, self.hist_start_date, self.hist_end_date)
-        self.dataframe = self.data_loader_instance.data_download()
+        self.dataframe = self.data_loader_instance.data_download() # to work with yf.Ticker, replace data_download() with data_history()
         self.end_date_state = self.dataframe[self.metric][-1]
             
     def simple(self):
@@ -30,7 +30,7 @@ class Statistic:
 
         '''
         daily_returns = self.dataframe[self.metric].pct_change().dropna()
-        self.expected_return = daily_returns.mean() # average daily returns or the expected return  for the simple returns
+        self.expected_return = daily_returns.mean() # average daily returns or the expected return for the simple returns
         self.volatility = daily_returns.std()
         self.variance = daily_returns.var() # also equals the volatility**2
         return daily_returns
